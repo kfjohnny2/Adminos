@@ -44,7 +44,50 @@ public class ProcessoJpaDAO {
     }
     
     public List<Processo> findAll(){
-        return entityManager.createQuery("FROM" + Processo.class.)
+        return entityManager.createQuery("FROM" + Processo.class.getName()).getResultList();        
+    }
+    
+    public void persist(Processo processo){
+        try{
+            entityManager.getTransaction().begin();
+            entityManager.persist(processo);
+            entityManager.getTransaction().commit();
+        } catch(Exception e){
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+    
+    public void merge(Processo processo){
+        try{
+            entityManager.getTransaction().begin();
+            entityManager.merge(processo);
+            entityManager.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+    
+    public void remove(Processo processo){
+        try{
+            entityManager.getTransaction().begin();
+            processo = entityManager.find(Processo.class, processo.getId());
+            entityManager.remove(processo);
+            entityManager.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+    
+    public void removeById(final int id){
+        try{
+            Processo processo = getById(id);
+            remove(processo);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
 }
