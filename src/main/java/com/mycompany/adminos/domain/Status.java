@@ -5,10 +5,41 @@
  */
 package com.mycompany.adminos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "status")
+
 /**
  *
  * @author johnnylee
  */
 public class Status {
+    
+    @Id
+    private int id;
+    @Column
+    private char descricao;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public char getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(char descricao) {
+        this.descricao = descricao;
+    }
+    
+    
 
 }

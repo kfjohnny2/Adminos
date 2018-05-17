@@ -5,10 +5,41 @@
  */
 package com.mycompany.adminos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "unidade")
+
 /**
  *
  * @author johnnylee
  */
 public class Unidade {
+    
+    @Id
+    private int id;
+    @Column
+    private char nomeUnidade;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public char getNomeUnidade() {
+        return nomeUnidade;
+    }
+
+    public void setNomeUnidade(char nomeUnidade) {
+        this.nomeUnidade = nomeUnidade;
+    }
+    
+    
 
 }
