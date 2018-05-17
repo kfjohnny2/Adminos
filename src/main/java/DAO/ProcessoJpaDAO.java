@@ -31,7 +31,7 @@ public class ProcessoJpaDAO {
     }
     
     private EntityManager getEntityManager(){
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("crudHibernatePU");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
         if(entityManager == null){
             entityManager = factory.createEntityManager();
         }

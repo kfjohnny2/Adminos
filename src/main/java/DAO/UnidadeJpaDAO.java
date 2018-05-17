@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import com.mycompany.adminos.domain.Historico;
+import com.mycompany.adminos.domain.Unidade;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,14 +16,14 @@ import javax.persistence.Persistence;
  *
  * @author jubss
  */
-public class HistoricoJpaDAO {
+public class UnidadeJpaDAO {
     
-    private static HistoricoJpaDAO instance;
+    private static UnidadeJpaDAO instance;
     private EntityManager entityManager;
     
-    public static HistoricoJpaDAO getInstance(){
+    public static UnidadeJpaDAO getInstance(){
         if(instance == null){
-            instance = new HistoricoJpaDAO();
+            instance = new UnidadeJpaDAO();
         }
         
         return instance;
@@ -38,18 +38,18 @@ public class HistoricoJpaDAO {
         return entityManager;
     }
     
-    public Historico getById(final int id){
-        return entityManager.find(Historico.class, id);
+    public Unidade getById(final int id){
+        return entityManager.find(Unidade.class, id);
     }
     
-    public List<Historico> findAll(){
-        return entityManager.createQuery("FROM" + Historico.class.getName()).getResultList();        
+    public List<Unidade> findAll(){
+        return entityManager.createQuery("FROM" + Unidade.class.getName()).getResultList();        
     }
     
-    public void persist(Historico historico){
+    public void persist(Unidade unidade){
         try{
             entityManager.getTransaction().begin();
-            entityManager.persist(historico);
+            entityManager.persist(unidade);
             entityManager.getTransaction().commit();
         } catch(Exception e){
             e.printStackTrace();
@@ -57,10 +57,10 @@ public class HistoricoJpaDAO {
         }
     }
     
-    public void merge(Historico historico){
+    public void merge(Unidade unidade){
         try{
             entityManager.getTransaction().begin();
-            entityManager.merge(historico);
+            entityManager.merge(unidade);
             entityManager.getTransaction().commit();
         } catch (Exception e){
             e.printStackTrace();
@@ -68,11 +68,11 @@ public class HistoricoJpaDAO {
         }
     }
     
-    public void remove(Historico historico){
+    public void remove(Unidade unidade){
         try{
             entityManager.getTransaction().begin();
-            historico = entityManager.find(Historico.class, historico.getId());
-            entityManager.remove(historico);
+            unidade = entityManager.find(Unidade.class, unidade.getId());
+            entityManager.remove(unidade);
             entityManager.getTransaction().commit();
         } catch (Exception e){
             e.printStackTrace();
@@ -82,8 +82,8 @@ public class HistoricoJpaDAO {
     
     public void removeById(final int id){
         try{
-            Historico historico = getById(id);
-            remove(historico);
+            Unidade unidade = getById(id);
+            remove(unidade);
         } catch (Exception e){
             e.printStackTrace();
         }
