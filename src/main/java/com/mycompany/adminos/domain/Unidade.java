@@ -18,11 +18,11 @@ import javax.persistence.Table;
  * @author johnnylee
  */
 public class Unidade {
-    
+
     @Id
     private int id;
     @Column
-    private char nomeUnidade;
+    private String nomeUnidade;
 
     public int getId() {
         return id;
@@ -32,14 +32,12 @@ public class Unidade {
         this.id = id;
     }
 
-    public char getNomeUnidade() {
+    public String getNomeUnidade() {
         return nomeUnidade;
     }
 
-    public void setNomeUnidade(char nomeUnidade) {
+    public void setNomeUnidade(String nomeUnidade) {
         this.nomeUnidade = nomeUnidade;
     }
-    
-    
 
 }

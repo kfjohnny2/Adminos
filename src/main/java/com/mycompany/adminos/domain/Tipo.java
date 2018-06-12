@@ -22,7 +22,7 @@ public class Tipo {
     @Id
     private int id;
     @Column
-    private char descricao;
+    private String descricao;
 
     public int getId() {
         return id;
@@ -32,14 +32,12 @@ public class Tipo {
         this.id = id;
     }
 
-    public char getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(char descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    
-    
+
 }

@@ -7,7 +7,7 @@ package DAO;
 
 import com.mycompany.adminos.domain.Historico;
 import java.util.List;
-
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,77 +16,79 @@ import javax.persistence.Persistence;
  *
  * @author jubss
  */
-public class HistoricoJpaDAO {
-    
+@Stateless
+public class HistoricoJpaDAO implements IServiceRemoteDAO {
+
     private static HistoricoJpaDAO instance;
     private EntityManager entityManager;
-    
-    public static HistoricoJpaDAO getInstance(){
-        if(instance == null){
+
+    public static HistoricoJpaDAO getInstance() {
+        if (instance == null) {
             instance = new HistoricoJpaDAO();
         }
-        
+
         return instance;
     }
-    
-    private EntityManager getEntityManager(){
+
+    public EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
-        if(entityManager == null){
+        if (entityManager == null) {
             entityManager = factory.createEntityManager();
         }
-        
+
         return entityManager;
     }
-    
-    public Historico getById(final int id){
+
+    public Historico getById(final int id) {
         return entityManager.find(Historico.class, id);
     }
-    
-    public List<Historico> findAll(){
-        return entityManager.createQuery("FROM" + Historico.class.getName()).getResultList();        
+
+    public List<Historico> findAll() {
+        return entityManager.createQuery("FROM" + Historico.class.getName()).getResultList();
     }
-    
-    public void persist(Historico historico){
-        try{
+
+    public void persist(Historico historico) {
+        try {
             entityManager.getTransaction().begin();
             entityManager.persist(historico);
             entityManager.getTransaction().commit();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    
-    public void merge(Historico historico){
-        try{
+
+    public void merge(Historico historico) {
+        try {
             entityManager.getTransaction().begin();
             entityManager.merge(historico);
             entityManager.getTransaction().commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    
-    public void remove(Historico historico){
-        try{
+
+    public void remove(Historico historico) {
+        try {
             entityManager.getTransaction().begin();
             historico = entityManager.find(Historico.class, historico.getId());
             entityManager.remove(historico);
             entityManager.getTransaction().commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    
-    public void removeById(final int id){
-        try{
+
+    @Override
+    public void removeById(final int id) {
+        try {
             Historico historico = getById(id);
             remove(historico);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
 }

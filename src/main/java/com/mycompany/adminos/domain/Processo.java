@@ -14,20 +14,19 @@ import javax.persistence.Table;
  *
  * @author johnnylee
  */
-
 @Entity
 @Table(name = "processo")
 
 public class Processo {
-    
+
     @Id
     private int id;
     @Column
-    private char processo;
+    private String processo;
     @Column
-    private char observacao;
+    private String observacao;
     @Column
-    private char assunto;
+    private String assunto;
     @Column
     private int ano;
     @Column
@@ -43,15 +42,15 @@ public class Processo {
         return id;
     }
 
-    public char getProcesso() {
+    public String getProcesso() {
         return processo;
     }
 
-    public char getObservacao() {
+    public String getObservacao() {
         return observacao;
     }
 
-    public char getAssunto() {
+    public String getAssunto() {
         return assunto;
     }
 
@@ -79,15 +78,15 @@ public class Processo {
         this.id = id;
     }
 
-    public void setProcesso(char processo) {
+    public void setProcesso(String processo) {
         this.processo = processo;
     }
 
-    public void setObservacao(char observacao) {
+    public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
 
-    public void setAssunto(char assunto) {
+    public void setAssunto(String assunto) {
         this.assunto = assunto;
     }
 
@@ -110,7 +109,5 @@ public class Processo {
     public void setIdUnidadeOrigem(int idUnidadeOrigem) {
         this.idUnidadeOrigem = idUnidadeOrigem;
     }
-    
-    
 
 }

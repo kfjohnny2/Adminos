@@ -18,15 +18,15 @@ import javax.persistence.Table;
  * @author johnnylee
  */
 public class Interessado {
-    
+
     @Id
     private int id;
     @Column
-    private char nome;
+    private String nome;
     @Column
-    private char tipo;
+    private String tipo;
     @Column
-    private char matricula;
+    private String matricula;
 
     public int getId() {
         return id;
@@ -36,30 +36,28 @@ public class Interessado {
         this.id = id;
     }
 
-    public char getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(char nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public char getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(char tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public char getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(char matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-    
-    
 
 }
