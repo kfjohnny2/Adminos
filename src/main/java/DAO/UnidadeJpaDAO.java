@@ -7,7 +7,7 @@ package DAO;
 
 import com.mycompany.adminos.domain.Unidade;
 import java.util.List;
-
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,77 +16,78 @@ import javax.persistence.Persistence;
  *
  * @author jubss
  */
+@Stateless
 public class UnidadeJpaDAO {
-    
+
     private static UnidadeJpaDAO instance;
     private EntityManager entityManager;
-    
-    public static UnidadeJpaDAO getInstance(){
-        if(instance == null){
+
+    public static UnidadeJpaDAO getInstance() {
+        if (instance == null) {
             instance = new UnidadeJpaDAO();
         }
-        
+
         return instance;
     }
-    
-    private EntityManager getEntityManager(){
+
+    private EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
-        if(entityManager == null){
+        if (entityManager == null) {
             entityManager = factory.createEntityManager();
         }
-        
+
         return entityManager;
     }
-    
-    public Unidade getById(final int id){
+
+    public Unidade getById(final int id) {
         return entityManager.find(Unidade.class, id);
     }
-    
-    public List<Unidade> findAll(){
-        return entityManager.createQuery("FROM" + Unidade.class.getName()).getResultList();        
+
+    public List<Unidade> findAll() {
+        return entityManager.createQuery("FROM" + Unidade.class.getName()).getResultList();
     }
-    
-    public void persist(Unidade unidade){
-        try{
+
+    public void persist(Unidade unidade) {
+        try {
             entityManager.getTransaction().begin();
             entityManager.persist(unidade);
             entityManager.getTransaction().commit();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    
-    public void merge(Unidade unidade){
-        try{
+
+    public void merge(Unidade unidade) {
+        try {
             entityManager.getTransaction().begin();
             entityManager.merge(unidade);
             entityManager.getTransaction().commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    
-    public void remove(Unidade unidade){
-        try{
+
+    public void remove(Unidade unidade) {
+        try {
             entityManager.getTransaction().begin();
             unidade = entityManager.find(Unidade.class, unidade.getId());
             entityManager.remove(unidade);
             entityManager.getTransaction().commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    
-    public void removeById(final int id){
-        try{
+
+    public void removeById(final int id) {
+        try {
             Unidade unidade = getById(id);
             remove(unidade);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
 }
