@@ -9,9 +9,9 @@ import DAO.ProcessoJpaDAO;
 import com.mycompany.adminos.domain.Processo;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.inject.Inject;
 
 /**
  *
@@ -21,12 +21,12 @@ import javax.inject.Inject;
 @RequestScoped
 public class ProcessoMB {
 
-    @Inject
-    ProcessoJpaDAO dao;
+    @EJB
+    private static ProcessoJpaDAO dao;
 
     //Auxiliary fields for JSF
     private List<Processo> processoList = new ArrayList<>();
-    private Processo processo = new Processo();
+    public Processo processo = new Processo();
 
     public String addNewProcesso() {
         dao.persist(processo);

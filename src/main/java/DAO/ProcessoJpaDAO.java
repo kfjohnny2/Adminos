@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
  * @author jubss
  */
 @Stateless
-public class ProcessoJpaDAO implements IServiceRemoteDAO {
+public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
 
     private static ProcessoJpaDAO instance;
     private EntityManager entityManager;
@@ -30,7 +30,6 @@ public class ProcessoJpaDAO implements IServiceRemoteDAO {
         return instance;
     }
 
-    @Override
     public EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
         if (entityManager == null) {
@@ -82,7 +81,6 @@ public class ProcessoJpaDAO implements IServiceRemoteDAO {
         }
     }
 
-    @Override
     public void removeById(final int id) {
         try {
             Processo processo = getById(id);

@@ -3,7 +3,7 @@
     <groupId>com.mycompany</groupId>
     <artifactId>Adminos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>ejb</packaging>
+    <packaging>war</packaging>
     <build>
         <plugins>
             <plugin>
