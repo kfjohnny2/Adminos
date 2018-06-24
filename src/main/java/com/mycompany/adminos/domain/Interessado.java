@@ -28,6 +28,12 @@ public class Interessado {
     @Column
     private String matricula;
 
+    public Interessado(String nome, String tipo, String matricula) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.matricula = matricula;
+    }
+
     public int getId() {
         return id;
     }
