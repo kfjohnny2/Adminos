@@ -13,15 +13,28 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
+ *	Bean stateless de sessao do historico, responsavel por instanciar a entidade Historico na
+ * aplicacao. 
  *
- * @author jubss
+ * @author Juliana Barbosa
  */
 @Stateless
 public class HistoricoJpaDAO implements IServiceRemoteDAO {
 
+    /**
+     *  Instancia do historico.
+     */
     private static HistoricoJpaDAO instance;
+    
+    /**
+     *  Gerenciador de entidade.
+     */
     private EntityManager entityManager;
 
+    /**
+     *  Acessa a instancia e, se ela ainda nao existir, é criada.
+     * @return instance
+     */
     public static HistoricoJpaDAO getInstance() {
         if (instance == null) {
             instance = new HistoricoJpaDAO();
@@ -30,6 +43,10 @@ public class HistoricoJpaDAO implements IServiceRemoteDAO {
         return instance;
     }
 
+    /**
+     *  Acessa o gerenciador de entidade caso ele ja exista. Se nao, é criado.
+     * @return 
+     */
     public EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
         if (entityManager == null) {

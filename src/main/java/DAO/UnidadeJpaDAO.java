@@ -13,15 +13,28 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
+ *  Bean stateless de sessao da Unidade, responsavel por instanciar a entidade Unidade na
+ * aplicacao.
  *
- * @author jubss
+ * @author Juliana Barbosa
  */
 @Stateless
 public class UnidadeJpaDAO {
 
+    /**
+     *  Instancia da unidade.
+     */
     private static UnidadeJpaDAO instance;
+    
+    /**
+     *  Gerenciador de entidade.
+     */
     private EntityManager entityManager;
 
+    /**
+     *  Acessa a instancia e, se ela ainda nao existir, é criada.
+     * @return instance
+     */
     public static UnidadeJpaDAO getInstance() {
         if (instance == null) {
             instance = new UnidadeJpaDAO();
@@ -30,6 +43,10 @@ public class UnidadeJpaDAO {
         return instance;
     }
 
+    /**
+     *  Acessa o gerenciador de entidade caso ele ja exista. Se nao, ele é criado.
+     * @return entityManager
+     */
     private EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
         if (entityManager == null) {
@@ -39,14 +56,27 @@ public class UnidadeJpaDAO {
         return entityManager;
     }
 
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Unidade getById(final int id) {
         return entityManager.find(Unidade.class, id);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Unidade> findAll() {
         return entityManager.createQuery("FROM" + Unidade.class.getName()).getResultList();
     }
 
+    /**
+     * 
+     * @param unidade 
+     */
     public void persist(Unidade unidade) {
         try {
             entityManager.getTransaction().begin();
@@ -58,6 +88,10 @@ public class UnidadeJpaDAO {
         }
     }
 
+    /**
+     * 
+     * @param unidade 
+     */
     public void merge(Unidade unidade) {
         try {
             entityManager.getTransaction().begin();
@@ -69,6 +103,10 @@ public class UnidadeJpaDAO {
         }
     }
 
+    /**
+     * 
+     * @param unidade 
+     */
     public void remove(Unidade unidade) {
         try {
             entityManager.getTransaction().begin();
@@ -81,6 +119,10 @@ public class UnidadeJpaDAO {
         }
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void removeById(final int id) {
         try {
             Unidade unidade = getById(id);

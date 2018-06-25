@@ -13,15 +13,28 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
+ *  Bean stateless de sessao do Processo, responsavel por instanciar a entidade Processo na
+ * aplicacao.
  *
- * @author jubss
+ * @author Juliana Barbosa
  */
 @Stateless
 public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
 
+    /**
+     *  Instancia do interessado.
+     */
     private static ProcessoJpaDAO instance;
+    
+    /**
+     *  Gerenciador de entidade.
+     */
     private EntityManager entityManager;
 
+    /**
+     *  Acessa a instancia e, se ela ainda nao existir, é criada.
+     * @return instance
+     */
     public static ProcessoJpaDAO getInstance() {
         if (instance == null) {
             instance = new ProcessoJpaDAO();
@@ -30,6 +43,10 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
         return instance;
     }
 
+    /**
+     *  Acessa o gerenciador de entidade caso ele ja exista. Se nao, ele é criado.
+     * @return entityManager
+     */
     public EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
         if (entityManager == null) {
@@ -39,14 +56,27 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
         return entityManager;
     }
 
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Processo getById(final int id) {
         return entityManager.find(Processo.class, id);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Processo> findAll() {
         return entityManager.createQuery("FROM" + Processo.class.getName()).getResultList();
     }
 
+    /**
+     * 
+     * @param processo 
+     */
     public void persist(Processo processo) {
         try {
             entityManager.getTransaction().begin();
@@ -58,6 +88,10 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
         }
     }
 
+    /**
+     * 
+     * @param processo 
+     */
     public void merge(Processo processo) {
         try {
             entityManager.getTransaction().begin();
@@ -69,6 +103,10 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
         }
     }
 
+    /**
+     * 
+     * @param processo 
+     */
     public void remove(Processo processo) {
         try {
             entityManager.getTransaction().begin();
@@ -81,6 +119,10 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
         }
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void removeById(final int id) {
         try {
             Processo processo = getById(id);

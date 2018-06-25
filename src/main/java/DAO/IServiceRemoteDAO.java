@@ -9,8 +9,9 @@ import javax.ejb.Remote;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author johnnylee
+ *  Métodos recorrentes no DAO.
+ * 
+ * @author Johnnylee Bryan
  */
 @Remote
 public interface IServiceRemoteDAO {

@@ -13,14 +13,28 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author jubss
+ *  Bean stateless de sessao do Tipo, responsavel por instanciar a entidade Tipo na
+ * aplicacao.
+ * 
+ * @author Juliana Barbosa
+ * 
  */
 public class TipoJpaDAO {
     
+    /**
+     *  Instancia do Tipo.
+     */
     private static TipoJpaDAO instance;
+    
+    /**
+     *  Gerenciador de entidade.
+     */
     private EntityManager entityManager;
     
+    /**
+     *  Acessa a instancia e, se ela ainda nao existir, é criada.
+     * @return instance
+     */
     public static TipoJpaDAO getInstance(){
         if(instance == null){
             instance = new TipoJpaDAO();
@@ -29,6 +43,10 @@ public class TipoJpaDAO {
         return instance;
     }
     
+    /**
+     *  Acessa o gerenciador de entidade caso ele ja exista. Se nao, ele é criado.
+     * @return entityManager
+     */
     private EntityManager getEntityManager(){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
         if(entityManager == null){
@@ -38,14 +56,27 @@ public class TipoJpaDAO {
         return entityManager;
     }
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Tipo getById(final int id){
         return entityManager.find(Tipo.class, id);
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<Tipo> findAll(){
         return entityManager.createQuery("FROM" + Tipo.class.getName()).getResultList();        
     }
     
+    /**
+     * 
+     * @param tipo 
+     */
     public void persist(Tipo tipo){
         try{
             entityManager.getTransaction().begin();
@@ -57,6 +88,10 @@ public class TipoJpaDAO {
         }
     }
     
+    /**
+     * 
+     * @param tipo 
+     */
     public void merge(Tipo tipo){
         try{
             entityManager.getTransaction().begin();
@@ -68,6 +103,10 @@ public class TipoJpaDAO {
         }
     }
     
+    /**
+     * 
+     * @param tipo 
+     */
     public void remove(Tipo tipo){
         try{
             entityManager.getTransaction().begin();
@@ -80,6 +119,10 @@ public class TipoJpaDAO {
         }
     }
     
+    /**
+     * 
+     * @param id 
+     */
     public void removeById(final int id){
         try{
             Tipo tipo = getById(id);
