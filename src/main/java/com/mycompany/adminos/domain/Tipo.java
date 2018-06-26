@@ -5,21 +5,23 @@
  */
 package com.mycompany.adminos.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-@Entity
-@Table(name = "tipo")
 
 /**
  *
  * @author johnnylee
  */
-public class Tipo {
+@Entity
+@Table(name = "tipo")
+public class Tipo implements Serializable {
 
     @Id
+    @GeneratedValue
     private int id;
     @Column
     private String descricao;

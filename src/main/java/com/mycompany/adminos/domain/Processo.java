@@ -5,8 +5,10 @@
  */
 package com.mycompany.adminos.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,10 +18,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "processo")
-
-public class Processo {
+public class Processo implements Serializable {
 
     @Id
+    @GeneratedValue
     private int id;
     @Column
     private String processo;

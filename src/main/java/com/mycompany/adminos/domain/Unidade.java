@@ -5,21 +5,23 @@
  */
 package com.mycompany.adminos.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-@Entity
-@Table(name = "unidade")
 
 /**
  *
  * @author johnnylee
  */
-public class Unidade {
+@Entity
+@Table(name = "unidade")
+public class Unidade implements Serializable {
 
     @Id
+    @GeneratedValue
     private int id;
     @Column
     private String nomeUnidade;

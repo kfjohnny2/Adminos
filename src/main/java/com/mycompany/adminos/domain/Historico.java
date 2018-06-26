@@ -5,22 +5,24 @@
  */
 package com.mycompany.adminos.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "historico")
-
 /**
  *
  * @author johnnylee
  */
-public class Historico {
-    
+@Entity
+@Table(name = "historico")
+public class Historico implements Serializable {
+
     @Id
     private int id;
+    @Column
+    private long idProcesso;
     @Column
     private long data;
     @Column
@@ -49,7 +51,5 @@ public class Historico {
     public void setIdUnidade(int idUnidade) {
         this.idUnidade = idUnidade;
     }
-    
-    
 
 }

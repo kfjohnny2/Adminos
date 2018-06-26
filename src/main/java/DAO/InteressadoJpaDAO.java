@@ -19,7 +19,7 @@ import javax.persistence.Persistence;
  * @author Juliana Barbosa
  */
 @Stateless
-public class InteressadoJpaDAO implements IServiceRemoteDAO {
+public class InteressadoJpaDAO {
 
     /**
      * Instancia do Interessado.
@@ -50,7 +50,6 @@ public class InteressadoJpaDAO implements IServiceRemoteDAO {
      *
      * @return
      */
-    @Override
     public EntityManager getEntityManager() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("AdminosPU");
         if (entityManager == null) {
@@ -145,7 +144,6 @@ public class InteressadoJpaDAO implements IServiceRemoteDAO {
      *
      * @param id
      */
-    @Override
     public void removeById(final int id) {
         try {
             Interessado interessado = getById(id);

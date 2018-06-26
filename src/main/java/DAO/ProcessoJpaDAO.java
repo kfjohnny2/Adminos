@@ -6,6 +6,7 @@
 package DAO;
 
 import com.mycompany.adminos.domain.Processo;
+import java.util.Calendar;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,8 +14,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *  Bean stateless de sessao do Processo, responsavel por instanciar a entidade Processo na
- * aplicacao.
+ * Bean stateless de sessao do Processo, responsavel por instanciar a entidade
+ * Processo na aplicacao.
  *
  * @author Juliana Barbosa
  */
@@ -22,17 +23,18 @@ import javax.persistence.Persistence;
 public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
 
     /**
-     *  Instancia do interessado.
+     * Instancia do interessado.
      */
     private static ProcessoJpaDAO instance;
-    
+
     /**
-     *  Gerenciador de entidade.
+     * Gerenciador de entidade.
      */
     private EntityManager entityManager;
 
     /**
-     *  Acessa a instancia e, se ela ainda nao existir, é criada.
+     * Acessa a instancia e, se ela ainda nao existir, ï¿½ criada.
+     *
      * @return instance
      */
     public static ProcessoJpaDAO getInstance() {
@@ -44,7 +46,9 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
     }
 
     /**
-     *  Acessa o gerenciador de entidade caso ele ja exista. Se nao, ele é criado.
+     * Acessa o gerenciador de entidade caso ele ja exista. Se nao, ele ï¿½
+     * criado.
+     *
      * @return entityManager
      */
     public EntityManager getEntityManager() {
@@ -57,25 +61,25 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
     }
 
     /**
-     * 
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Processo getById(final int id) {
         return entityManager.find(Processo.class, id);
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public List<Processo> findAll() {
         return entityManager.createQuery("FROM" + Processo.class.getName()).getResultList();
     }
 
     /**
-     * 
-     * @param processo 
+     *
+     * @param processo
      */
     public void persist(Processo processo) {
         try {
@@ -89,8 +93,25 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
     }
 
     /**
-     * 
-     * @param processo 
+     *
+     * @param processo
+     */
+    public void update(Processo processo) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager
+                    .createQuery("update historico set data = " + Calendar.getInstance().getTimeInMillis() + ", set idprocesso = " + processo.getId()
+                            + "where id= " + processo.getId())
+                    .executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    /**
+     *
+     * @param processo
      */
     public void merge(Processo processo) {
         try {
@@ -104,8 +125,8 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
     }
 
     /**
-     * 
-     * @param processo 
+     *
+     * @param processo
      */
     public void remove(Processo processo) {
         try {
@@ -120,8 +141,8 @@ public class ProcessoJpaDAO {//implements IServiceRemoteDAO {
     }
 
     /**
-     * 
-     * @param id 
+     *
+     * @param id
      */
     public void removeById(final int id) {
         try {

@@ -5,21 +5,23 @@
  */
 package com.mycompany.adminos.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-@Entity
-@Table(name = "interessado")
 
 /**
  *
  * @author johnnylee
  */
-public class Interessado {
+@Entity
+@Table(name = "interessado")
+public class Interessado implements Serializable {
 
     @Id
+    @GeneratedValue
     private int id;
     @Column
     private int idInteressado;
@@ -37,7 +39,6 @@ public class Interessado {
     }
 
     public Interessado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

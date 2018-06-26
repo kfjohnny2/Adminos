@@ -19,6 +19,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>processoCadastro.xhtml</welcome-file>
+        <welcome-file>updateProcesso.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

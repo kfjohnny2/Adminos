@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head><title>Movimentar processo</title></h:head>
+    <h:head>Movimentar processo</h:head>
+    <body>
+        <h:form >
+            <h:panelGrid columns="1" >
+
+                <h:outputLabel value="23077.034635/2018-50"/>
+                <h:outputLabel value="PAGAMENTO DE BOLSISTAR DE ESPECIAL CONSAD (R$630,00), REFERENTE: Maio/2018" />
+                <h:outputLabel value="JOSE WEGLISON ROCHA SILVA"/>
+                <h:outputLabel value="Natureza: OSTENSIVO"/>
+                <h:outputLabel value="Johnnylee"/>
+                <!--                <h:outputLabel value="Date of Birth : "/>
+                                <h:inputText value="#{UpdateProcessoManagedBean.processo.processo}">
+                                    <f:convertDateTime pattern="dd/mm/yyyy"/>
+                                </h:inputText>-->
+                <h:outputLabel value="Unidade Destino"/>
+                <h:selectOneMenu value="#{UpdateProcessoManagedBean.processo.idUnidadeOrigem}" >
+                    <f:selectItem itemValue="0" itemLabel="SUPERINTENDÊNCIA DE INFORMÁTICA (11.35)" />
+                    <f:selectItem itemValue="1" itemLabel="DCF - SETOR DE ORÇAMENTO (11.02.02.11)" />
+                    <f:selectItem itemValue="2" itemLabel="DCF - SETOR DE CONTABILIDADE (11.02.02.05)" />
+                    <f:selectItem itemValue="3" itemLabel="DCF - SETOR DE FINANÇAS (11.02.02.10)" />
+                    <f:selectItem itemValue="4" itemLabel="DCF - ARQUIVO (11.02.02.01)" />
+                </h:selectOneMenu>
+            </h:panelGrid>
+
+            <h:commandButton value="Atualizar processo" style="margin-left: 20px"
+                             action="#{UpdateProcessoManagedBean.addNewProcesso}"/>
+        </h:form>
+    </body>
+</html>
