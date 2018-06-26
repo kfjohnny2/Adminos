@@ -28,13 +28,15 @@ public class Processo {
     @Column
     private String assunto;
     @Column
-    private int ano;
+    private Long data;
     @Column
     private int idTipo;
     @Column
     private int idStatus;
     @Column
     private int idInteressado;
+    @Column
+    private String usuarioEnvio;
     @Column
     private int idUnidadeOrigem;
 
@@ -54,8 +56,8 @@ public class Processo {
         return assunto;
     }
 
-    public int getAno() {
-        return ano;
+    public Long getData() {
+        return data;
     }
 
     public int getIdTipo() {
@@ -90,8 +92,8 @@ public class Processo {
         this.assunto = assunto;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setData(Long data) {
+        this.data = data;
     }
 
     public void setIdTipo(int idTipo) {
@@ -100,6 +102,14 @@ public class Processo {
 
     public void setIdStatus(int idStatus) {
         this.idStatus = idStatus;
+    }
+
+    public void setUsuarioEnvio(String usuarioEnvio) {
+        this.usuarioEnvio = usuarioEnvio;
+    }
+
+    public String getUsuarioEnvio() {
+        return this.usuarioEnvio;
     }
 
     public void setIdInteressado(int idInteressado) {

@@ -10,7 +10,9 @@ import DAO.ProcessoJpaDAO;
 import com.mycompany.adminos.domain.Interessado;
 import com.mycompany.adminos.domain.Processo;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,22 +26,25 @@ import javax.faces.bean.RequestScoped;
 public class ProcessoMB {
 
     @EJB
-    private static ProcessoJpaDAO dao;
+    private static ProcessoJpaDAO daoProcesso;
+    @EJB
     private static InteressadoJpaDAO daoInteressado;
 
     //Auxiliary fields for JSF
     private List<Processo> processoList = new ArrayList<>();
     public Processo processo = new Processo();
-    private List<Interessado> interessadosList = new ArrayList<>();
+    public Interessado interessado = new Interessado();
 
     public String addNewProcesso() {
-        dao.persist(processo);
-        processoList = dao.findAll();
+        processo.setData(Calendar.getInstance().getTimeInMillis());
+        daoProcesso.persist(processo);
+        processoList = daoProcesso.findAll();
         return "employeelist";
     }
 
-    private void setup() {
-        interessadosList.add(new Interessado("Johnnylee", "DISCENTE", "2015035848"));
-        daoInteressado.persistAll(interessadosList);
+    @PostConstruct
+    public void init() {
+        interessado = (new Interessado("Johnnylee", "DISCENTE", "2015035848"));
+        daoInteressado.persist(interessado);
     }
 }

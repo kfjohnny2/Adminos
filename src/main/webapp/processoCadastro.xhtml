@@ -5,29 +5,39 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
     <h:head><title>Lançar novo processo</title></h:head>
+    <h:head>Lançar novo processo</h:head>
     <body>
-        <h:form>
+        <h:form >
             <h:panelGrid columns="2" >
 
-                <h:outputLabel value="Processo : "/>
+                <h:outputLabel value="Processo: "/>
                 <h:inputText value="#{ProcessoManagedBean.processo.processo}"/>
+                <h:outputLabel value="Assunto Detalhado : " />
+                <h:inputText value="#{ProcessoManagedBean.processo.assunto}" style="width: 700px"/>
+                <h:outputLabel value="Usuario Envio: "/>
+                <h:inputText value="#{ProcessoManagedBean.processo.usuarioEnvio} " style="width: 700px"/>
+                <h:outputLabel value="Matricula Interessado: "/>
+                <h:inputText value="#{ProcessoManagedBean.processo.idInteressado}"/>
                 <!--                <h:outputLabel value="Date of Birth : "/>
                                 <h:inputText value="#{ProcessoManagedBean.processo.processo}">
                                     <f:convertDateTime pattern="dd/mm/yyyy"/>
                                 </h:inputText>-->
 
+                <h:selectOneMenu value="#{ProcessoManagedBean.processo.idUnidadeOrigem}" >
+                    <f:selectItem itemValue="0" itemLabel="SUPERINTENDÊNCIA DE INFORMÁTICA (11.35)" />
+                    <f:selectItem itemValue="1" itemLabel="DCF - SETOR DE ORÇAMENTO (11.02.02.11)" />
+                    <f:selectItem itemValue="2" itemLabel="DCF - SETOR DE CONTABILIDADE (11.02.02.05)" />
+                    <f:selectItem itemValue="3" itemLabel="DCF - SETOR DE FINANÇAS (11.02.02.10)" />
+                    <f:selectItem itemValue="4" itemLabel="DCF - ARQUIVO (11.02.02.01)" />
+                </h:selectOneMenu>
+                <h:selectOneMenu value="#{ProcessoManagedBean.processo.idTipo}" style="margin-left: 20px">
+                    <f:selectItem itemValue="0" itemLabel="PAGAMENTO DE BOLSISTA" />
+                </h:selectOneMenu>
             </h:panelGrid>
-            <h:commandButton value="Inserir novo processo"
-                             action="#{processoManagedBean.addNewProcesso}"/>
 
-            <h:selectOneMenu value="Unidade: ">
-                <f:selectItem itemValue="SINFO" itemLabel="SUPERINTEND�NCIA DE INFORM�TICA (11.35)" />
-                <f:selectItem itemValue="Secao de Orcamento" itemLabel="DCF - SE��O DE OR�AMENTO (11.02.02.11)" />
-                <f:selectItem itemValue="Setor de contabilidade" itemLabel="DCF - SETOR DE CONTABILIDADE (11.02.02.05)" />
-                <f:selectItem itemValue="Secao de Financas" itemLabel="DCF - SE��O DE FINAN�AS (11.02.02.10)" />
-                <f:selectItem itemValue="Arquivo" itemLabel="DCF - ARQUIVO (11.02.02.01)" />
-            </h:selectOneMenu>
 
+            <h:commandButton value="Inserir novo processo" style="margin-left: 20px"
+                             action="#{ProcessoManagedBean.addNewProcesso}"/>
         </h:form>
     </body>
 </html>

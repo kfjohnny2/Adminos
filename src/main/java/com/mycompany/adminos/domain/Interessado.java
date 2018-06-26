@@ -22,6 +22,8 @@ public class Interessado {
     @Id
     private int id;
     @Column
+    private int idInteressado;
+    @Column
     private String nome;
     @Column
     private String tipo;
@@ -34,12 +36,24 @@ public class Interessado {
         this.matricula = matricula;
     }
 
+    public Interessado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdInteressado() {
+        return idInteressado;
+    }
+
+    public void setIdInteressado(int idInteressado) {
+        this.idInteressado = idInteressado;
     }
 
     public String getNome() {
